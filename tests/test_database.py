@@ -6,8 +6,7 @@ import lazy_sqlalchemy
 
 class DatabaseTestCase(unittest.TestCase):
     def test_create_db_with_autoflush(self):
-        db = lazy_sqlalchemy.create_db(
-            session_options=dict(autoflush=True))
+        db = lazy_sqlalchemy.create_db(session_options=dict(autoflush=True))
 
         class User(db.Model):
             __tablename__ = "users"
@@ -32,8 +31,7 @@ class DatabaseTestCase(unittest.TestCase):
         self.assertEqual(User.query.count(), 0)
 
     def test_create_db_without_autoflush(self):
-        db = lazy_sqlalchemy.create_db(
-            session_options=dict(autoflush=False))
+        db = lazy_sqlalchemy.create_db(session_options=dict(autoflush=False))
 
         class User(db.Model):
             __tablename__ = "users"

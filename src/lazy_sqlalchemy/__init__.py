@@ -10,7 +10,7 @@ class Database(object):
         session_factory = sessionmaker(**session_options)
         Session = scoped_session(session_factory)
         self._session = Session
-        self._model: DeclarativeMeta = declarative_base()
+        self._model = declarative_base()
         self._model.query = Session.query_property()
         self._engine = None
 
@@ -19,7 +19,7 @@ class Database(object):
         return self._session
 
     @property
-    def Model(self):
+    def Model(self) -> DeclarativeMeta:
         return self._model
 
     @property

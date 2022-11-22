@@ -23,11 +23,13 @@ setup(
     zip_safe=True,
     python_requires='>=3.7.*, <4',
     install_requires=['SQLAlchemy'],
-    extras_require={'test': ['coverage'], 'package': ['wheel', 'twine']},
+    extras_require={
+        'test': ['coverage', 'flake8', 'mypy'],
+        'package': ['wheel', 'twine']
+    },
     project_urls={
         'Bug Reports':
         'https://github.com/masamitsu-murase/lazy-sqlalchemy/issues',
-        'Source':
-        'https://github.com/masamitsu-murase/lazy-sqlalchemy',
+        'Source': 'https://github.com/masamitsu-murase/lazy-sqlalchemy',
     },
 )

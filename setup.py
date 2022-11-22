@@ -24,7 +24,7 @@ setup(
     python_requires='>=3.7.*, <4',
     install_requires=['SQLAlchemy'],
     extras_require={
-        'test': ['coverage', 'flake8', 'mypy'],
+        'test': ['coverage', 'flake8', 'mypy', 'sqlalchemy2-stubs'],
         'package': ['wheel', 'twine']
     },
     project_urls={

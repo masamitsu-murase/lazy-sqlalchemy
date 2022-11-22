@@ -3,7 +3,7 @@ from sqlalchemy.engine import Engine as BaseEngine
 from sqlalchemy.future import Engine as FutureEngine
 from sqlalchemy.orm import (DeclarativeMeta, declarative_base, scoped_session,
                             sessionmaker)
-from typing import Optional, Union
+from typing import Optional, Union, cast
 
 
 class Database(object):
@@ -11,8 +11,9 @@ class Database(object):
         session_factory = sessionmaker(**session_options)
         Session = scoped_session(session_factory)
         self._session = Session
-        self._model = declarative_base(**model_options)
-        self._model.query = Session.query_property()
+        model = cast(DeclarativeMeta, declarative_base(**model_options))
+        model.query = Session.query_property()
+        self._model = model
         self._engine = None
 
     @property
@@ -20,7 +21,7 @@ class Database(object):
         return self._session
 
     @property
-    def Model(self) -> DeclarativeMeta:
+    def Model(self):
         return self._model
 
     @property

@@ -1,6 +1,9 @@
+[![PyPI version](https://badge.fury.io/py/lazy-sqlalchemy.svg)](https://badge.fury.io/py/lazy-sqlalchemy)
+[![build](https://github.com/masamitsu-murase/lazy-sqlalchemy/actions/workflows/ci.yml/badge.svg)](https://github.com/masamitsu-murase/lazy-sqlalchemy/actions/workflows/ci.yml)
+
 # Lazy SQLAlchemy
 
-A library to wrap sqlalchemy for lazy load of database.
+This is a simple wrapper library for SQLAlchemy to load database lazily.
 
 This tiny library is baesd on the functionality of [`sessionmaker`](https://docs.sqlalchemy.org/en/14/orm/session_api.html#session-and-sessionmaker).  
 According to the document, we can bind an engine to `Session` after we create `Session` instance.

@@ -1,36 +1,12 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import (DeclarativeMeta, declarative_base, scoped_session,
-                            sessionmaker)
-
-__all__ = ["create_db"]
+from .database import Database
 
 
-class Database(object):
-    def __init__(self, *, session_options={}):
-        session_factory = sessionmaker(**session_options)
-        Session = scoped_session(session_factory)
-        self._session = Session
-        self._model = declarative_base()
-        self._model.query = Session.query_property()
-        self._engine = None
+def create_db(*, session_options={}, model_options={}) -> Database:
+    """Create Database instance.
 
-    @property
-    def session(self):
-        return self._session
-
-    @property
-    def Model(self) -> DeclarativeMeta:
-        return self._model
-
-    @property
-    def engine(self):
-        return self._engine
-
-    def configure_engine(self, url, **engine_options):
-        engine = create_engine(url, **engine_options)
-        self._session.configure(bind=engine)
-        self._engine = engine
-
-
-def create_db(*, session_options={}) -> Database:
-    return Database(session_options=session_options)
+    :param session_options: Options passed to sessionmaker.
+    :param model_options: Options passed to declarative_base.
+    :return: Generated Database instance.
+    """
+    return Database(session_options=session_options,
+                    model_options=model_options)
